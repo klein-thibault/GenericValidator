@@ -12,7 +12,7 @@
 		8EA293481DEDD3D50058FB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA293461DEDD3D50058FB19 /* Main.storyboard */; };
 		8EA2934A1DEDD3D50058FB19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA293491DEDD3D50058FB19 /* Assets.xcassets */; };
 		8EA2934D1DEDD3D50058FB19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2934B1DEDD3D50058FB19 /* LaunchScreen.storyboard */; };
-		8EA293581DEDD3D50058FB19 /* GenericValidatorExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA293571DEDD3D50058FB19 /* GenericValidatorExampleTests.swift */; };
+		8EA293631DEDDC070058FB19 /* StringEvaluationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA293621DEDDC070058FB19 /* StringEvaluationTests.swift */; };
 		8EE225E61DA3D7E74E1E378F /* Pods_GenericValidatorExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673FEB5619D2008F048B3D2B /* Pods_GenericValidatorExample.framework */; };
 		FF10B86E1CC53078FFA0DC1D /* Pods_GenericValidatorExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A47DA9EF8DB421888AE49 /* Pods_GenericValidatorExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -39,8 +39,8 @@
 		8EA2934C1DEDD3D50058FB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EA2934E1DEDD3D50058FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA293531DEDD3D50058FB19 /* GenericValidatorExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenericValidatorExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EA293571DEDD3D50058FB19 /* GenericValidatorExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericValidatorExampleTests.swift; sourceTree = "<group>"; };
 		8EA293591DEDD3D50058FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EA293621DEDDC070058FB19 /* StringEvaluationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringEvaluationTests.swift; sourceTree = "<group>"; };
 		ADC5B091143989C5235E9C14 /* Pods-GenericValidatorExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenericValidatorExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GenericValidatorExampleTests/Pods-GenericValidatorExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1437B1DE3F0961E3EAAD59D /* Pods-GenericValidatorExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenericValidatorExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample.release.xcconfig"; sourceTree = "<group>"; };
 		F46A47DA9EF8DB421888AE49 /* Pods_GenericValidatorExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenericValidatorExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +122,8 @@
 		8EA293561DEDD3D50058FB19 /* GenericValidatorExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				8EA293571DEDD3D50058FB19 /* GenericValidatorExampleTests.swift */,
 				8EA293591DEDD3D50058FB19 /* Info.plist */,
+				8EA293621DEDDC070058FB19 /* StringEvaluationTests.swift */,
 			);
 			path = GenericValidatorExampleTests;
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EA293581DEDD3D50058FB19 /* GenericValidatorExampleTests.swift in Sources */,
+				8EA293631DEDDC070058FB19 /* StringEvaluationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
