@@ -1,0 +1,19 @@
+# references:
+# # * http://www.objc.io/issue-6/travis-ci.html
+# # * https://github.com/supermarin/xcpretty#usage
+#
+language: swift
+osx_image: xcode8.1
+cache: cocoapods
+podfile: Example/Podfile
+before_install:
+#- gem install cocoapods # Since Travis is not always on latest version
+#- pod repo update
+#- pod install --project-directory=Example
+- gem install bundler
+- bundle install
+- pod repo update
+- pod install --project-directory=Example
+script:
+- set -o pipefail && xcodebuild test -project TextFieldValidatorExample.xcodeproj -scheme TextFieldValidatorExampleTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
+- pod lib lint
