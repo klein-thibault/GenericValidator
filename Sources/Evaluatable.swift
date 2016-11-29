@@ -1,13 +1,13 @@
 //
 //  Evaluatable.swift
-//  TextFieldValidator
+//  GenericValidator
 //
 //  Created by Thibault Klein on 11/29/16.
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
 /// The evaluatable protocol.
-protocol Evaluatable {
+public protocol Evaluatable {
 
     associatedtype T
 

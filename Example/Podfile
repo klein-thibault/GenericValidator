@@ -1,10 +1,10 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'TextFieldValidatorExample' do
-	pod 'TextFieldValidator', :path => '../'
+target 'GenericValidatorExample' do
+	pod 'GenericValidator', :path => '../'
 
-	target 'TextFieldValidatorExampleTests' do
+	target 'GenericValidatorExampleTests' do
 		inherit! :search_paths
 	end
 end

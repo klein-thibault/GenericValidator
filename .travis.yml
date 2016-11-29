@@ -15,5 +15,5 @@ before_install:
 - pod repo update
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -project TextFieldValidatorExample.xcodeproj -scheme TextFieldValidatorExampleTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
+- set -o pipefail && xcodebuild test -project GenericValidatorExample.xcodeproj -scheme GenericValidatorExampleTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
 - pod lib lint

@@ -1,20 +1,19 @@
 //
-//  Validatable.swift
+//  UITextField+Validatable.swift
 //  GenericValidator
 //
 //  Created by Thibault Klein on 11/29/16.
 //  Copyright © 2016 Prolific Interactive. All rights reserved.
 //
 
-/// The validatable protocol.
-public protocol Validatable {
+public extension UITextField {
 
-    associatedtype T
-
-    /// Validates the functions passed as the parameter.
+    /// Validates the given functions.
     ///
     /// - Parameter functions: The functions to validate.
     /// - Returns: `true` if and only if all the functions validated.
-    func validate(_ functions: [T]) -> Bool
+    public func validate(_ functions: [(String) -> Bool]) -> Bool {
+        return functions.map { f in f(self.text ?? "") }.reduce(true) { $0 && $1 }
+    }
 
 }

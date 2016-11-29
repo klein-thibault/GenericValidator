@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "TextFieldValidator"
+  s.name             = "GenericValidator"
   s.version          = "0.0.1"
   s.summary          = "Text field validation helper"
 
@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
 Text field validation helper. Provides a structure to validate text fields, as well as helper functions using regular expressions.
                        DESC
 
-  s.homepage         = "https://github.com/prolificinteractive/TextFieldValidator"
+  s.homepage         = "https://github.com/prolificinteractive/GenericValidator"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Thibault Klein" => "thibault@prolificinteractive.com" }
-  s.source           = { :git => "https://github.com/prolificinteractive/TextFieldValidator.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/prolificinteractive/GenericValidator.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '9.0'
   s.requires_arc = true
