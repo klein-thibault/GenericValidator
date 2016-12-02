@@ -45,7 +45,7 @@ import GenericValidator
 
 You can use the validate function provided in the `UITextField` or `String` extensions:
 
-```
+```swift
 func isCVCValid(text: String) -> Bool {
     let regexp = "^[0-9]{3,4}$"
     return text.evaluate(with: regexp)
@@ -58,7 +58,7 @@ cvcTextField.validate([isCVCValid])
 
 You can also conform to the protocols with your custom types:
 
-```
+```swift
 struct User {
     let firstName: String
     let lastName: String
