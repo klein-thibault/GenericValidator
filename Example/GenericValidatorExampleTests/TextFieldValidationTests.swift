@@ -10,7 +10,7 @@ import XCTest
 @testable import GenericValidator
 
 enum ValidationError: Error {
-    case invalid(String)
+    case error(String)
 }
 
 class TextFieldValidationTests: XCTestCase {
@@ -19,7 +19,7 @@ class TextFieldValidationTests: XCTestCase {
         // Given
         let textField = UITextField()
         textField.text = "qwerty"
-        let result = textField.validate([isPasswordValid])
+        let result = textField.validate([isPasswordEmpty])
         // When
         let expectedResult = ValidationResult.valid
         // Then
@@ -30,31 +30,60 @@ class TextFieldValidationTests: XCTestCase {
         // Given
         let textField = UITextField()
         textField.text = nil
-        let result = textField.validate([isPasswordValid])
+        let result = textField.validate([isPasswordEmpty])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.invalid("The password is empty")])
+        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is empty")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
 
-    private func isPasswordValid(password: String) -> ValidationResult {
+    func test_whenTextFieldHasPassword_andPasswordIsStrong() {
+        // Given
+        let textField = UITextField()
+        textField.text = "abcdefghij123456"
+        let result = textField.validate([isPasswordEmpty, isPasswordStrong])
+        // When
+        let expectedResult = ValidationResult.valid
+        // Then
+        XCTAssertEqual(result, expectedResult)
+    }
+
+    func test_whenTextFieldHasPassword_andPasswordIsWeak() {
+        // Given
+        let textField = UITextField()
+        textField.text = "abcd"
+        let result = textField.validate([isPasswordEmpty, isPasswordStrong])
+        // When
+        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is too short"),
+                                                       ValidationError.error("The password doesn't contain a digit")])
+        // Then
+        XCTAssertEqual(result, expectedResult)
+    }
+
+    private func isPasswordEmpty(password: String) -> ValidationResult {
         if password.isNotEmpty() {
             return .valid
         }
 
-        return .invalid([ValidationError.invalid("The password is empty")])
+        return .invalid([ValidationError.error("The password is empty")])
     }
 
-    private func isPhoneNumberValid(phoneNumber: String) -> ValidationResult {
-        guard phoneNumber.isNotEmpty() else {
-            return .invalid([ValidationError.invalid("The phone number is empty")])
+    private func isPasswordStrong(password: String) -> ValidationResult {
+        var errors = [ValidationError]()
+
+        if password.characters.count <= 7 {
+            errors.append(.error("The password is too short"))
         }
 
-        if phoneNumber.isPhoneNumberValid() {
+        if password.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
+            errors.append(.error("The password doesn't contain a digit"))
+        }
+
+        if errors.isEmpty {
             return .valid
         }
 
-        return .invalid([ValidationError.invalid("The phone number is invalid")])
+        return .invalid(errors)
     }
 
 }
