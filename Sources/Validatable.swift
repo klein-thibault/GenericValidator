@@ -14,7 +14,7 @@ public protocol Validatable {
     /// Validates the functions passed as the parameter.
     ///
     /// - Parameter functions: The functions to validate.
-    /// - Returns: `true` if and only if all the functions validated.
-    func validate(_ functions: [T]) -> Bool
+    /// - Returns: The validation result.
+    func validate(_ functions: [(T) -> ValidationResult]) -> ValidationResult
 
 }

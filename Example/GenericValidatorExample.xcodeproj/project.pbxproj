@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E94ECC31DFF2E6C00985F7D /* TextFieldValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94ECC21DFF2E6C00985F7D /* TextFieldValidationTests.swift */; };
 		8EA293431DEDD3D50058FB19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA293421DEDD3D50058FB19 /* AppDelegate.swift */; };
 		8EA293451DEDD3D50058FB19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA293441DEDD3D50058FB19 /* ViewController.swift */; };
 		8EA293481DEDD3D50058FB19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA293461DEDD3D50058FB19 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		24AC680D1BCF30A746626CCB /* Pods-GenericValidatorExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenericValidatorExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample.debug.xcconfig"; sourceTree = "<group>"; };
 		31F06AF1B55F5A64A2BB0E41 /* Pods-GenericValidatorExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenericValidatorExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GenericValidatorExampleTests/Pods-GenericValidatorExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		673FEB5619D2008F048B3D2B /* Pods_GenericValidatorExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenericValidatorExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E94ECC21DFF2E6C00985F7D /* TextFieldValidationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldValidationTests.swift; sourceTree = "<group>"; };
 		8EA2933F1DEDD3D50058FB19 /* GenericValidatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenericValidatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA293421DEDD3D50058FB19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EA293441DEDD3D50058FB19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				8EA293591DEDD3D50058FB19 /* Info.plist */,
 				8EA293621DEDDC070058FB19 /* StringEvaluationTests.swift */,
+				8E94ECC21DFF2E6C00985F7D /* TextFieldValidationTests.swift */,
 			);
 			path = GenericValidatorExampleTests;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E94ECC31DFF2E6C00985F7D /* TextFieldValidationTests.swift in Sources */,
 				8EA293631DEDDC070058FB19 /* StringEvaluationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
