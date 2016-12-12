@@ -13,7 +13,6 @@ public extension UITextField {
     /// - Parameter functions: The functions to validate.
     /// - Returns: `true` if and only if all the functions validated.
     public func validate(_ functions: [(String) -> ValidationResult]) -> ValidationResult {
-        //return functions.map { f in f(self.text ?? "") }.reduce(.valid) { $0 && $1 }
         let results = functions.map({ f in f(self.text ?? "") })
 
         var errors = [Error]()

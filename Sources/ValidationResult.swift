@@ -15,6 +15,7 @@ public enum ValidationResult {
     case valid
     case invalid([Error])
 
+    /// Returns `true` if and only if the validation result is valid.
     var isValid: Bool {
         return self == .valid
     }
