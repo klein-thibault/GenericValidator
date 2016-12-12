@@ -43,7 +43,9 @@ import GenericValidator
 
 ## Usage
 
-You can use the validate function provided in the `UITextField` or `String` extensions:
+GenericValidator provides 2 extensions that you can use out of the box on `UITextField` and `String`. The `UITextField` extension provides a validation function, and the `String` extension an evaluation function.
+
+Here is an example where you can use the `String` extension to evaluate if a string is a valid credit card CVC number, and validate the text field by passing the evaluating function:
 
 ```swift
 func isCVCValid(text: String) -> Bool {
@@ -56,7 +58,9 @@ cvcTextField.text = "123"
 cvcTextField.validate([isCVCValid])
 ```
 
-You can also conform to the protocols with your custom types:
+You can also conform to the protocols to evaluate and validate your custom types.
+
+Here is an example that describes how to validate a user:
 
 ```swift
 struct User {
