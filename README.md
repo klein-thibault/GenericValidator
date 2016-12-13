@@ -19,7 +19,7 @@ This framework was inspired by these blog articles:
 
 * [Prolific Blog](http://blog.prolificinteractive.com/2016/09/08/a-functional-approach-to-uitextfield-validation/)
 * [Thibault Klein’s article 1](http://thibaultklein.com/ios/a-functional-approach-to-uitextfield-validation/)
-* [Thibault Klein’s article 1](http://thibaultklein.com/ios/a-functional-approach-to-validation-using-protocol-oriented-programming/)
+* [Thibault Klein’s article 2](http://thibaultklein.com/ios/a-functional-approach-to-validation-using-protocol-oriented-programming/)
 
 ## Requirements
 
