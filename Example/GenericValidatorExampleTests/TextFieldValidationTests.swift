@@ -60,6 +60,28 @@ class TextFieldValidationTests: XCTestCase {
         XCTAssertEqual(result, expectedResult)
     }
 
+    func test_whenTextFieldHasPassword_andPasswordIsTooShort() {
+        // Given
+        let textField = UITextField()
+        textField.text = "abc12"
+        let result = textField.validate([isPasswordEmpty, isPasswordStrong])
+        // When
+        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is too short")])
+        // Then
+        XCTAssertEqual(result, expectedResult)
+    }
+
+    func test_whenTextFieldHasPassword_andPasswordDoesntHaveDigit() {
+        // Given
+        let textField = UITextField()
+        textField.text = "abcueuiziuefjiuzfz"
+        let result = textField.validate([isPasswordEmpty, isPasswordStrong])
+        // When
+        let expectedResult = ValidationResult.invalid([ValidationError.error("The password doesn't contain a digit")])
+        // Then
+        XCTAssertEqual(result, expectedResult)
+    }
+
     private func isPasswordEmpty(password: String) -> ValidationResult {
         if password.isNotEmpty() {
             return .valid

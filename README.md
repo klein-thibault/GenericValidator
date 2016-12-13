@@ -7,7 +7,7 @@
 
 ## Description
 
-GenericValidator provides helper functions and protocols to help you validate any kind of data that conforms to the `Evaluatable` and `Validatable` protocols.
+GenericValidator provides helper functions and protocols to help you validate any kind of data that conforms to the `Evaluatable` and `Validatable` protocols. The validation protocol takes functions that return a validation result, which can either be valid or invalid. The invalid case contains a custom error that you provide, and the final result will list all the errors that occurred during the validation process.
 
 The framework provides `UITextField` and `String` extensions that you can directly use to validate their content.
 
@@ -48,14 +48,25 @@ GenericValidator provides 2 extensions that you can use out of the box on `UITex
 Here is an example where you can use the `String` extension to evaluate if a string is a valid credit card CVC number, and validate the text field by passing the evaluating function:
 
 ```swift
-func isCVCValid(text: String) -> Bool {
+enum ValidationError: Error {
+    case error(String)
+}
+
+func isCVCValid(text: String) -> ValidationResult {
     let regexp = "^[0-9]{3,4}$"
-    return text.evaluate(with: regexp)
+    if text.evaluate(with: regexp) {
+        return .valid
+    }
+
+    return .invalid([ValidationError.error("The CVC is invalid")])
 }
 
 let cvcTextField = UITextField()
 cvcTextField.text = "123"
-cvcTextField.validate([isCVCValid])
+let result = cvcTextField.validate([isCVCValid]) // result is valid
+
+cvcTextField.text = "12a"
+let result = cvcTextField.validate([isCVCValid]) // result is invalid, with error "The CVC is invalid"
 ```
 
 You can also conform to the protocols to evaluate and validate your custom types.
@@ -63,6 +74,10 @@ You can also conform to the protocols to evaluate and validate your custom types
 Here is an example that describes how to validate a user:
 
 ```swift
+enum ValidationError: Error {
+    case error(String)
+}
+
 struct User {
     let firstName: String
     let lastName: String
@@ -70,22 +85,55 @@ struct User {
 }
 
 extension User: Validatable {
-    func validate(_ functions: [(User) -> Bool]) -> Bool {
-        return functions.map { f in f(self) }.reduce(true) { $0 && $1 }
+
+    func validate(_ functions: [(User) -> ValidationResult]) -> ValidationResult {
+        let results = functions.map { f in f(self) }
+        var errors = [Error]()
+
+        for result in results {
+            switch result {
+            case .valid:
+                continue
+            case .invalid(let resultErrors):
+                errors.append(contentsOf: resultErrors)
+            }
+        }
+
+        if errors.isEmpty {
+            return .valid
+        }
+
+        return .invalid(errors)
     }
+
 }
 
-func isUserNameValid(user: User) -> Bool {
+func isUserNameValid(user: User) -> ValidationResult {
     let regexp = "[A-Za-z] "
-    return user.firstName.evaluate(with: regexp) && user.lastName.evaluate(with: regexp)
+    if user.firstName.evaluate(with: regexp)
+        && user.lastName.evaluate(with: regexp) {
+        return .valid
+    }
+
+    return .invalid([ValidationError.error("The user name is invalid")])
 }
 
-func isUserAdult(user: User) -> Bool {
-    return user.age >= 18
+func isUserAdult(user: User) -> ValidationResult {
+    if user.age >= 18 {
+        return .valid
+    }
+
+    return .invalid([ValidationError.error("The user is not an adult")])
 }
 
-let user = User(firstName: "Thibault", lastName: "Klein", age: 25)
-XCTAssertTrue(user.validate([isUserNameValid, isUserAdult]))
+let user = User(firstName: "Thibault", lastName: "Klein", age: 26)
+let result = user.validate([isUserNameValid, isUserAdult]) // result is valid
+
+let user = User(firstName: "Thibault", lastName: "Klein", age: 17)
+let result = user.validate([isUserNameValid, isUserAdult]) // result is invalid with error "The user is not an adult"
+
+let user = User(firstName: "12345", lastName: "Klein", age: 17)
+let result = user.validate([isUserNameValid, isUserAdult]) // result is invalid with errors "The user name is invalid" and "The user is not an adult"
 ```
 
 ## Contributing to GenericValidator
