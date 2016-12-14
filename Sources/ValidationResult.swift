@@ -16,8 +16,25 @@ public enum ValidationResult {
     case invalid([Error])
 
     /// Returns `true` if and only if the validation result is valid.
-    var isValid: Bool {
+    public var isValid: Bool {
         return self == .valid
+    }
+
+    /// Combines two validation results into one.
+    ///
+    /// - Parameter result: The result to combine.
+    /// - Returns: The combined result.
+    public func combine(_ result: ValidationResult) -> ValidationResult {
+        switch (self, result) {
+        case (.valid, .valid):
+            return .valid
+        case (.invalid(let errors), .valid):
+            return .invalid(errors)
+        case (.valid, .invalid(let errors)):
+            return .invalid(errors)
+        case (.invalid(let leftErrors), .invalid(let rightErrors)):
+            return .invalid(leftErrors + rightErrors)
+        }
     }
 
 }

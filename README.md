@@ -87,29 +87,13 @@ struct User {
 extension User: Validatable {
 
     func validate(_ functions: [(User) -> ValidationResult]) -> ValidationResult {
-        let results = functions.map { f in f(self) }
-        var errors = [Error]()
-
-        for result in results {
-            switch result {
-            case .valid:
-                continue
-            case .invalid(let resultErrors):
-                errors.append(contentsOf: resultErrors)
-            }
-        }
-
-        if errors.isEmpty {
-            return .valid
-        }
-
-        return .invalid(errors)
+		return functions.map({ f in f(self) }).reduce(ValidationResult.valid) { $0.combine($1) }
     }
 
 }
 
 func isUserNameValid(user: User) -> ValidationResult {
-    let regexp = "[A-Za-z] "
+    let regexp = "[A-Za-z]+$"
     if user.firstName.evaluate(with: regexp)
         && user.lastName.evaluate(with: regexp) {
         return .valid
