@@ -8,11 +8,12 @@
 
 Pod::Spec.new do |s|
   s.name             = "GenericValidator"
-  s.version          = "0.0.1"
-  s.summary          = "Text field validation helper"
+  s.version          = "0.0.2"
+  s.summary          = "Validation helper tool"
 
   s.description      = <<-DESC
-Text field validation helper. Provides a structure to validate text fields, as well as helper functions using regular expressions.
+Provides Validatable and Evaluatable protocols to validate and evaluate every type conforming to the them.
+Also provides helper functions using regular expressions and extensions on String and UITextField.
                        DESC
 
   s.homepage         = "https://github.com/prolificinteractive/GenericValidator"
