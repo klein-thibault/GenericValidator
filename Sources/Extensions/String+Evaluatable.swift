@@ -69,7 +69,7 @@ public extension String {
     ///
     /// - Returns: `true` if and only if the text is a valid email.
     func isEmailValid() -> Bool {
-        let regexp = "[A-Z0-9a-z._]+@([\\w\\d]+\\.[\\w\\d]{2,64})"
+        let regexp = "[A-Z0-9a-z._]+@([\\w\\d]+\\.[\\w\\d\\.]{2,64})"
         return evaluate(with: regexp)
     }
 
