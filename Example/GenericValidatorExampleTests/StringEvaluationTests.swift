@@ -116,4 +116,24 @@ class StringEvaluationTests: XCTestCase {
         XCTAssertFalse(text.isEmailValid())
     }
 
+    func test_whenTextIsInvalidEmail_withTwoDots() {
+        let text = "thibault@test..com"
+        XCTAssertFalse(text.isEmailValid())
+    }
+
+    func test_whenTextIsInvalidEmail_withDotAtTheBeginning() {
+        let text = ".thibault@test.com"
+        XCTAssertFalse(text.isEmailValid())
+    }
+
+    func test_whenTextIsInvalidEmail_withPlusAtTheBeginning() {
+        let text = "+thibault@test.com"
+        XCTAssertFalse(text.isEmailValid())
+    }
+
+    func test_whenTextIsInvalidEmail_withDashAtTheBeginning() {
+        let text = "-thibault@test.com"
+        XCTAssertFalse(text.isEmailValid())
+    }
+
 }
