@@ -52,7 +52,9 @@ enum ValidationError: Error {
     case error(String)
 }
 
-func isCVCValid(text: String) -> ValidationResult {
+typealias CVCValidationResult = ValidationResult<ValidationError>
+
+func isCVCValid(text: String) -> CVCValidationResult {
     let regexp = "^[0-9]{3,4}$"
     if text.evaluate(with: regexp) {
         return .valid
@@ -84,15 +86,17 @@ struct User {
     let age: Int
 }
 
+typealias UserValidationResult = ValidationResult<ValidationError>
+
 extension User: Validatable {
 
-    func validate(_ functions: [(User) -> ValidationResult]) -> ValidationResult {
-		return functions.map({ f in f(self) }).reduce(ValidationResult.valid) { $0.combine($1) }
+    func validate(_ functions: [(User) -> UserValidationResult]) -> UserValidationResult {
+		return functions.map({ f in f(self) }).reduce(UserValidationResult.valid) { $0.combine($1) }
     }
 
 }
 
-func isUserNameValid(user: User) -> ValidationResult {
+func isUserNameValid(user: User) -> UserValidationResult {
     let regexp = "[A-Za-z]+$"
     if user.firstName.evaluate(with: regexp)
         && user.lastName.evaluate(with: regexp) {
