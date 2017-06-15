@@ -17,7 +17,7 @@ struct User {
 
 extension User: Validatable {
 
-    func validate(_ functions: [(User) -> ValidationResult]) -> ValidationResult {
+    func validate(_ functions: [(User) -> ValidationResult<ValidationError>]) -> ValidationResult<ValidationError> {
         return functions.map({ f in f(self) }).reduce(ValidationResult.valid) { $0.combine($1) }
     }
 
@@ -30,7 +30,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         let user = User(firstName: "Thibault", lastName: "Klein", age: 26)
         let result = user.validate([isUserNameValid, isUserAdult])
         // When
-        let expectedResult = ValidationResult.valid
+        let expectedResult = ValidationResult<ValidationError>.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -65,7 +65,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         XCTAssertEqual(result, expectedResult)
     }
 
-    private func isUserNameValid(user: User) -> ValidationResult {
+    private func isUserNameValid(user: User) -> ValidationResult<ValidationError> {
         let regexp = "[A-Za-z]+$"
         if user.firstName.evaluate(with: regexp)
             && user.lastName.evaluate(with: regexp) {
@@ -75,7 +75,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         return .invalid([ValidationError.error("The user name is invalid")])
     }
 
-    private func isUserAdult(user: User) -> ValidationResult {
+    private func isUserAdult(user: User) -> ValidationResult<ValidationError> {
         if user.age >= 18 {
             return .valid
         }

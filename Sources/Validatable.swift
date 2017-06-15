@@ -10,11 +10,12 @@
 public protocol Validatable {
 
     associatedtype T
+    associatedtype Error: Swift.Error, Equatable
 
     /// Validates the functions passed as the parameter.
     ///
     /// - Parameter functions: The functions to validate.
     /// - Returns: The validation result.
-    func validate(_ functions: [(T) -> ValidationResult]) -> ValidationResult
+    func validate(_ functions: [(T) -> ValidationResult<Error>]) -> ValidationResult<Error>
 
 }

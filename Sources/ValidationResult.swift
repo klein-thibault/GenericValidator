@@ -10,10 +10,10 @@
 ///
 /// - valid: Indicates that the validation passed.
 /// - invalid: Indicates that the validation didn't pass, with a list of associated errors.
-public enum ValidationResult {
+public enum ValidationResult<T: Error & Equatable> {
 
     case valid
-    case invalid([Error])
+    case invalid([T])
 
     /// Returns `true` if and only if the validation result is valid.
     public var isValid: Bool {
@@ -41,12 +41,12 @@ public enum ValidationResult {
 
 extension ValidationResult: Equatable { }
 
-public func ==(lhs: ValidationResult, rhs: ValidationResult) -> Bool {
+public func ==<T: Error & Equatable>(lhs: ValidationResult<T>, rhs: ValidationResult<T>) -> Bool {
     switch (lhs, rhs) {
     case (.valid, .valid):
         return true
-    case (.invalid(_), .invalid(_)):
-        return true
+    case (.invalid(let leftErrors), .invalid(let rightErrors)):
+        return leftErrors == rightErrors
     default:
         return false
     }
