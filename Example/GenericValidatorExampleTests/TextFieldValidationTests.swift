@@ -9,8 +9,15 @@
 import XCTest
 @testable import GenericValidator
 
-enum ValidationError: Error {
+enum ValidationError: Error, Equatable {
     case error(String)
+}
+
+func ==(lhs: ValidationError, rhs: ValidationError) -> Bool {
+    switch (lhs, rhs) {
+    case (.error(let leftErrorMessage), .error(let rightErrorMessage)):
+        return leftErrorMessage == rightErrorMessage
+    }
 }
 
 class TextFieldValidationTests: XCTestCase {
@@ -21,7 +28,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "qwerty"
         let result = textField.validate([isPasswordEmpty])
         // When
-        let expectedResult = ValidationResult.valid
+        let expectedResult = ValidationResult<ValidationError>.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -43,7 +50,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "abcdefghij123456"
         let result = textField.validate([isPasswordEmpty, isPasswordStrong])
         // When
-        let expectedResult = ValidationResult.valid
+        let expectedResult = ValidationResult<ValidationError>.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -82,7 +89,7 @@ class TextFieldValidationTests: XCTestCase {
         XCTAssertEqual(result, expectedResult)
     }
 
-    private func isPasswordEmpty(password: String) -> ValidationResult {
+    private func isPasswordEmpty(password: String) -> ValidationResult<ValidationError> {
         if password.isNotEmpty() {
             return .valid
         }
@@ -90,7 +97,7 @@ class TextFieldValidationTests: XCTestCase {
         return .invalid([ValidationError.error("The password is empty")])
     }
 
-    private func isPasswordStrong(password: String) -> ValidationResult {
+    private func isPasswordStrong(password: String) -> ValidationResult<ValidationError> {
         var errors = [ValidationError]()
 
         if password.characters.count <= 7 {
