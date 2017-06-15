@@ -9,6 +9,8 @@
 import XCTest
 @testable import GenericValidator
 
+typealias UserValidationResult = ValidationResult<ValidationError>
+
 struct User {
     let firstName: String
     let lastName: String
@@ -17,7 +19,7 @@ struct User {
 
 extension User: Validatable {
 
-    func validate(_ functions: [(User) -> ValidationResult<ValidationError>]) -> ValidationResult<ValidationError> {
+    func validate(_ functions: [(User) -> UserValidationResult]) -> UserValidationResult {
         return functions.map({ f in f(self) }).reduce(ValidationResult.valid) { $0.combine($1) }
     }
 
@@ -30,7 +32,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         let user = User(firstName: "Thibault", lastName: "Klein", age: 26)
         let result = user.validate([isUserNameValid, isUserAdult])
         // When
-        let expectedResult = ValidationResult<ValidationError>.valid
+        let expectedResult = UserValidationResult.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -40,7 +42,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         let user = User(firstName: "Thibault1", lastName: "Klein", age: 26)
         let result = user.validate([isUserNameValid, isUserAdult])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The user name is invalid")])
+        let expectedResult = UserValidationResult.invalid([ValidationError.error("The user name is invalid")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -50,7 +52,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         let user = User(firstName: "Thibault", lastName: "Klein@", age: 26)
         let result = user.validate([isUserNameValid, isUserAdult])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The user name is invalid")])
+        let expectedResult = UserValidationResult.invalid([ValidationError.error("The user name is invalid")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -60,12 +62,12 @@ class CustomUserTypeValidationTests: XCTestCase {
         let user = User(firstName: "Thibault", lastName: "Klein", age: 17)
         let result = user.validate([isUserNameValid, isUserAdult])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The user is not an adult")])
+        let expectedResult = UserValidationResult.invalid([ValidationError.error("The user is not an adult")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
 
-    private func isUserNameValid(user: User) -> ValidationResult<ValidationError> {
+    private func isUserNameValid(user: User) -> UserValidationResult {
         let regexp = "[A-Za-z]+$"
         if user.firstName.evaluate(with: regexp)
             && user.lastName.evaluate(with: regexp) {
@@ -75,7 +77,7 @@ class CustomUserTypeValidationTests: XCTestCase {
         return .invalid([ValidationError.error("The user name is invalid")])
     }
 
-    private func isUserAdult(user: User) -> ValidationResult<ValidationError> {
+    private func isUserAdult(user: User) -> UserValidationResult {
         if user.age >= 18 {
             return .valid
         }

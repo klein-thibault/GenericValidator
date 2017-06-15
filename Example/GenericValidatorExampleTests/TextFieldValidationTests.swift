@@ -9,6 +9,8 @@
 import XCTest
 @testable import GenericValidator
 
+typealias TextFieldValidationResult = ValidationResult<ValidationError>
+
 enum ValidationError: Error, Equatable {
     case error(String)
 }
@@ -28,7 +30,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "qwerty"
         let result = textField.validate([isPasswordEmpty])
         // When
-        let expectedResult = ValidationResult<ValidationError>.valid
+        let expectedResult = TextFieldValidationResult.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -39,7 +41,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = nil
         let result = textField.validate([isPasswordEmpty])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is empty")])
+        let expectedResult = TextFieldValidationResult.invalid([ValidationError.error("The password is empty")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -50,7 +52,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "abcdefghij123456"
         let result = textField.validate([isPasswordEmpty, isPasswordStrong])
         // When
-        let expectedResult = ValidationResult<ValidationError>.valid
+        let expectedResult = TextFieldValidationResult.valid
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -61,7 +63,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "abcd"
         let result = textField.validate([isPasswordEmpty, isPasswordStrong])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is too short"),
+        let expectedResult = TextFieldValidationResult.invalid([ValidationError.error("The password is too short"),
                                                        ValidationError.error("The password doesn't contain a digit")])
         // Then
         XCTAssertEqual(result, expectedResult)
@@ -73,7 +75,7 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "abc12"
         let result = textField.validate([isPasswordEmpty, isPasswordStrong])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The password is too short")])
+        let expectedResult = TextFieldValidationResult.invalid([ValidationError.error("The password is too short")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
@@ -84,12 +86,12 @@ class TextFieldValidationTests: XCTestCase {
         textField.text = "abcueuiziuefjiuzfz"
         let result = textField.validate([isPasswordEmpty, isPasswordStrong])
         // When
-        let expectedResult = ValidationResult.invalid([ValidationError.error("The password doesn't contain a digit")])
+        let expectedResult = TextFieldValidationResult.invalid([ValidationError.error("The password doesn't contain a digit")])
         // Then
         XCTAssertEqual(result, expectedResult)
     }
 
-    private func isPasswordEmpty(password: String) -> ValidationResult<ValidationError> {
+    private func isPasswordEmpty(password: String) -> TextFieldValidationResult {
         if password.isNotEmpty() {
             return .valid
         }
@@ -97,7 +99,7 @@ class TextFieldValidationTests: XCTestCase {
         return .invalid([ValidationError.error("The password is empty")])
     }
 
-    private func isPasswordStrong(password: String) -> ValidationResult<ValidationError> {
+    private func isPasswordStrong(password: String) -> TextFieldValidationResult {
         var errors = [ValidationError]()
 
         if password.characters.count <= 7 {
