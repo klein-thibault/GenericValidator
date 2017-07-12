@@ -1,5 +1,5 @@
 PODS:
-  - GenericValidator (0.0.3)
+  - GenericValidator (0.0.4)
 
 DEPENDENCIES:
   - GenericValidator (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GenericValidator: 6832c747557f714c3398cc174651ad8a4d181069
+  GenericValidator: 0d362d25c6b072b874513f634b1f107bcadfa337
 
 PODFILE CHECKSUM: 32202c54ca54107be3a5d9b8f012fb2a421447e8
 
