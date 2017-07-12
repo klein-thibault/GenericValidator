@@ -96,9 +96,14 @@ class StringEvaluationTests: XCTestCase {
         XCTAssertTrue(text.isEmailValid())
     }
 
-    func test_whenTextIsInvalidEmail_withPlusCharacter() {
+    func test_whenTextIsValidEmail_withPlusCharacter() {
         let text = "marc+test@msn.com"
-        XCTAssertFalse(text.isEmailValid())
+        XCTAssertTrue(text.isEmailValid())
+    }
+
+    func test_whenTextIsValidEmail_withPeriodCharacter() {
+        let text = "marc.test@msn.com"
+        XCTAssertTrue(text.isEmailValid())
     }
 
     func test_whenTextIsInvalidEmail_withUnderscoreCharacter() {
