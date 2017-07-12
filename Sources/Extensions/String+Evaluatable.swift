@@ -69,13 +69,12 @@ public extension String {
     ///
     /// - Returns: `true` if and only if the text is a valid email.
     func isEmailValid() -> Bool {
-        let regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-        let letters = CharacterSet.letters
-        let digits = CharacterSet.decimalDigits
-        let firstChar = unicodeScalars.first!
+        guard let firstChar = unicodeScalars.first else {
+            return false
+        }
         
-        return evaluate(with: regexp)
-            && (letters.contains(firstChar) || digits.contains(firstChar))
+        let regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+        return evaluate(with: regexp) && firstChar.isAlphaNumeric()
     }
 
 }
