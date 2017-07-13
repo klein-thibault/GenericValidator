@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "GenericValidator"
-  s.version          = "0.0.4"
+  s.version          = "0.0.5"
   s.summary          = "Validation helper tool"
 
   s.description      = <<-DESC
