@@ -12,7 +12,7 @@ public extension UITextField {
     ///
     /// - Parameter functions: The functions to validate.
     /// - Returns: `true` if and only if all the functions validated.
-    public func validate<T: Error & Equatable>(_ functions: [(String) -> ValidationResult<T>]) -> ValidationResult<T> {
+    public func validate<T>(_ functions: [(String) -> ValidationResult<T>]) -> ValidationResult<T> {
         return functions
             .map({ f in f(self.text ?? "") })
             .reduce(ValidationResult.valid) { $0.combine($1) }
