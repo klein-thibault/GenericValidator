@@ -41,7 +41,7 @@ public enum ValidationResult<T: Error & Equatable> {
 
 extension ValidationResult: Equatable { }
 
-public func ==<T: Error & Equatable>(lhs: ValidationResult<T>, rhs: ValidationResult<T>) -> Bool {
+public func ==<T>(lhs: ValidationResult<T>, rhs: ValidationResult<T>) -> Bool {
     switch (lhs, rhs) {
     case (.valid, .valid):
         return true
