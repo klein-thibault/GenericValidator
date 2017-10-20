@@ -73,7 +73,7 @@ public extension String {
             return false
         }
         
-        let regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+        let regexp = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
         return evaluate(with: regexp) && firstChar.isAlphaNumeric()
     }
 
