@@ -102,7 +102,7 @@ class TextFieldValidationTests: XCTestCase {
     private func isPasswordStrong(password: String) -> TextFieldValidationResult {
         var errors = [ValidationError]()
 
-        if password.characters.count <= 7 {
+        if password.count <= 7 {
             errors.append(.error("The password is too short"))
         }
 
