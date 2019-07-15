@@ -12,7 +12,7 @@ public extension String {
     ///
     /// - Parameter condition: The condition to evaluate
     /// - Returns: `true` if and only if the condition passed the evaluation.
-    public func evaluate(with condition: String) -> Bool {
+    func evaluate(with condition: String) -> Bool {
         guard let range = range(of: condition, options: .regularExpression, range: nil, locale: nil) else {
             return false
         }

@@ -146,7 +146,6 @@
 				8EA2933C1DEDD3D50058FB19 /* Frameworks */,
 				8EA2933D1DEDD3D50058FB19 /* Resources */,
 				ECA06313BA4FC1119616A239 /* [CP] Embed Pods Frameworks */,
-				CACF77F8D40B1C1EC773EC80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,8 +164,6 @@
 				8EA2934F1DEDD3D50058FB19 /* Sources */,
 				8EA293501DEDD3D50058FB19 /* Frameworks */,
 				8EA293511DEDD3D50058FB19 /* Resources */,
-				FB1B933FF104F5525AE7592F /* [CP] Embed Pods Frameworks */,
-				DE6F0A6F722A448A467B442E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,19 +182,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Thibault Klein";
 				TargetAttributes = {
 					8EA2933E1DEDD3D50058FB19 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 5ZZ7W4SB26;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 					8EA293521DEDD3D50058FB19 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 5ZZ7W4SB26;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8EA2933E1DEDD3D50058FB19;
 					};
@@ -205,7 +202,7 @@
 			};
 			buildConfigurationList = 8EA2933A1DEDD3D50058FB19 /* Build configuration list for PBXProject "GenericValidatorExample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -279,43 +276,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CACF77F8D40B1C1EC773EC80 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE6F0A6F722A448A467B442E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GenericValidatorExampleTests/Pods-GenericValidatorExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ECA06313BA4FC1119616A239 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GenericValidator/GenericValidator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -324,22 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB1B933FF104F5525AE7592F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GenericValidatorExampleTests/Pods-GenericValidatorExampleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GenericValidatorExample/Pods-GenericValidatorExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -398,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -457,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -515,7 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.GenericValidatorExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -529,7 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.GenericValidatorExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -543,7 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.GenericValidatorExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenericValidatorExample.app/GenericValidatorExample";
 			};
 			name = Debug;
@@ -558,7 +512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.GenericValidatorExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenericValidatorExample.app/GenericValidatorExample";
 			};
 			name = Release;
