@@ -24,8 +24,8 @@ This framework was inspired by these blog articles:
 ## Requirements
 
 * iOS 9+
-* Xcode 8
-* Swift 3+
+* Xcode 10
+* Swift 5+
 
 ## Installation
 

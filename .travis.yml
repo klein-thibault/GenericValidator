@@ -8,7 +8,7 @@ cache: cocoapods
 podfile: Example/Podfile
 
 env:
-    - SWIFT_VERSION=4.0
+    - SWIFT_VERSION=5.0
 
 before_install:
     - gem install bundler
